@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+from django.contrib.auth.models import User # Importa o modelo User
 
 class Denuncia(models.Model): 
 
@@ -13,19 +14,15 @@ class Denuncia(models.Model):
     titulo = models.CharField(max_length=200)
     descricao = models.TextField()
     imagem = models.ImageField(upload_to='imagens/')
-    data_envio = models.DateField(auto_now=True)
+    data_envio = models.DateField(auto_now=True) # Data e horário atualizada automaticamente
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pendente')
-    responsavel = models.ForeignKey('Responsavel', on_delete=models.SET_NULL, null=True, blank=True)
+    responsavel = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True) # Usa User do Django
     resposta = models.TextField(blank=True, null=True) # Resposta do responsavel
 
     def __str__(self):
         return f"{self.titulo} - {self.protocolo}"
 
 
-class Responsavel(models.Model): 
-    nome = models.CharField(max_length=100)
-    email = models.EmailField()
 
-    def __str__(self):
-        return self.nome 
+
     

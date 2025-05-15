@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar status denuncia</title>
+</head>
+<body>
+    <h1>
+        Veja aqui sua denuncia
+    </h1>
+
+    <form action="{% url 'consultar' %}" method="get">
+        <label for="protocolo">Protocolo</label>
+        <input type="text" name="protocolo" id="protocolo" required>
+        <input type="submit" value="Consultar">
+    </form>
+</body>
+</html>
