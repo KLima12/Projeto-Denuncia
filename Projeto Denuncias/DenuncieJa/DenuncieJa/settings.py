@@ -1,9 +1,9 @@
 
 import os
 from pathlib import Path
-
+from decouple import config # Para email
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+from decouple import Config # Importante para o env
 
 SECRET_KEY = 'django-insecure-j6w6mc-h96uhwc7gcr5e_psca$pc=flqeha)of#t$n)$t!rvdu'
 
@@ -112,3 +112,11 @@ STATICFILES_DIRS = []
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = config('EMAIL_HOST_USER') # Do arquivo .env
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST = config('EMAIL_HOST')

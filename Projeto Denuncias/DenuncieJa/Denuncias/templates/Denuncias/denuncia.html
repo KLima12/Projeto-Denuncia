@@ -12,53 +12,15 @@
 <body>
     <h1>Página de Denúncias</h1>
 
-    <h2>Preencha o formulário abaixo com sua denúncia</h2>
-
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    <h2>Preencha o formulário abaixo com sua denúncia</h2>]
 
     <form action="{% url 'denuncia' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="form-group">
-            <label for="{{ form.titulo.id_for_label }}">Título</label>
-            {{ form.titulo }}
-            {% if form.titulo.errors %}
-                <span class="error" aria-live="polite">{{ form.titulo.errors }}</span>
-            {% endif %}
-        </div>
-        
-        <div class="form-group">
-            <label for="{{ form.descricao.id_for_label }}">Descrição</label>
-            {{ form.descricao }}
-            {% if form.descricao.errors %}
-                <span class="error" aria-live="polite">{{ form.descricao.errors }}</span>
-            {% endif %}
-        </div>
-        
-        <div class="form-group">
-            <label for="{{ form.imagem.id_for_label }}">Imagem</label>
-            {{ form.imagem }}
-            {% if form.imagem.errors %}
-                <span class="error" aria-live="polite">{{ form.imagem.errors }}</span>
-            {% endif %}
-        </div>
 
+        {{ form.as_p }}
         <input type="submit" value="Salvar">
 
-        {% if form.errors %}
-            <div class="erros">
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                {% endfor %}
-            </div>
-        {% endif %}
+       
     </form>
 
 </body>

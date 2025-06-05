@@ -13,8 +13,9 @@ class Denuncia(models.Model):
     protocolo = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     titulo = models.CharField(max_length=200)
     descricao = models.TextField()
-    imagem = models.ImageField(upload_to='imagens/')
+    imagem = models.ImageField(upload_to='imagens/', blank=True) # Usando blank para dizer que não é obrigatório enviar uma imagem
     data_envio = models.DateField(auto_now=True) # Data e horário atualizada automaticamente
+    email = models.EmailField()  
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pendente')
     responsavel = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True) # Usa User do Django
     resposta = models.TextField(blank=True, null=True) # Resposta do responsavel
