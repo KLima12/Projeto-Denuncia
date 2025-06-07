@@ -15,6 +15,7 @@ def home(request):
 
 
 def denuncia(request):
+    """View de enviar uma denuncia"""
     if request.method == 'POST':
         form = DenunciaForm(request.POST, request.FILES) # Inclui request.FILES para o campo de imagem
         if form.is_valid():
@@ -32,9 +33,11 @@ def denuncia(request):
     return render(request, "Denuncias/denuncia.html", context={'form': form})
 
 def confirmacao(request, protocolo):
+    """View para apresentar ao usuario o número do protocolo"""
     return render(request, "Denuncias/confirmacao.html", {'protocolo': protocolo})
 
-def consultar_denuncia(request): 
+def consultar_denuncia(request):
+    """Úsuario consulta uma denuncia pelo protocolo""" 
     if request.method == "GET": 
         protocolo = request.GET.get("protocolo") # Pegando protocolo que vem do formulario
         if protocolo: # Verificando se o protocolo existe
@@ -43,6 +46,7 @@ def consultar_denuncia(request):
     return render(request, "Denuncias/consultar.html")
 
 def ver_denuncia(request, protocolo):
+    """Úsuario consegue ver o andamento da denuncia"""
     # usando values_list() para retornar uma lista de tuplas (Isso é bom para não pesar minha aplicação, já que eu quero buscar somente alguns dados e não todos)
     # contexto = [
     #     {"titulo": titulo, "resposta": resposta, "status": status, "responsavel": responsavel} 

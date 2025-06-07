@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respostas</title>
+</head>
+<body>
+    <h1>Olá {{user.username}}</h1>
+
+    <h2>Aqui estão as denuncias que estão pendentes</h2>
+
+    <p>Total de denúncias pendentes: {{ pendentes|length }}</p>
+    <ul>
+        {% for pendente in pendentes %}
+            <li>{{ pendente.titulo }}</li>
+        {% empty %}
+            <li>Nenhuma denúncia pendente encontrada.</li>
+        {% endfor %}
+    </ul>
+
+    
+</body>
+</html>

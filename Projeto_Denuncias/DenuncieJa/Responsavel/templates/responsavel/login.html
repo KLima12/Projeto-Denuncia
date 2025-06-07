@@ -6,15 +6,10 @@
     <title>Login</title>
 </head>
 <body>
-    <form action="{% url 'login' %}" method="POST">{%csrf_token%}
-        <input type="text" placeholder="Username..." name="username">
-        <br>
-        <br>
-        <br>
-        <input type="password" placeholder="Senha..." name="senha" >
-        <br>
-        <br>
-        <input type="submit" value="login">
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Salvar">
     </form>
 </body>
 </html>
