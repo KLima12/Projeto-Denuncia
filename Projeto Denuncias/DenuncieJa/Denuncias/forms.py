@@ -12,7 +12,6 @@ class DenunciaForm(forms.ModelForm):
         }
 
 
-class ConsultarProtocoloForm(forms.ModelForm):
-    class Meta:
-        protocolo = forms.CharField(
-            label="Digite seu protocolo da denuncia", max_length=50)
+class ConsultarProtocoloForm(forms.Form):
+    protocolo = forms.CharField(
+        label="Digite seu protocolo da denuncia", max_length=50)

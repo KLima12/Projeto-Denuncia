@@ -39,8 +39,10 @@ def confirmacao(request, protocolo):
 def consultar_denuncia(request):
     if request.method == 'GET':
         form = ConsultarProtocoloForm()
-        return render(request, "Denuncias/consultar.html", {"form": form})
-        # return redirect('ver_denuncia', protocolo)
+        if form.is_valid():
+            protocolo = form.cleaned_data['protocolo']
+            return redirect('ver_denuncia', protocolo)
+    return render(request, "Denuncias/consultar.html", {'form': form})
 
 
 def ver_denuncia(request, protocolo):
