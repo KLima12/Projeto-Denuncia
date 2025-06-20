@@ -1,0 +1,1 @@
+Tarefa atual: Tirar html no form e fazer com forms.py no consultar_denuncia

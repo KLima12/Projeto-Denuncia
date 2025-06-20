@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responder Denuncias</title>
+</head>
+<body>
+    <h1>{{denuncia.titulo}}</h1>
+    <p>{{denuncia.descricao}}</p>
+    <p>{{denuncia.data_envio}}</p>
+    <p>{{denuncia.email}}</p>
+    {% if denuncia.imagem %}
+        <img src="{{denuncia.imagem.url}}" alt="Imagem da denúncia" width="200px" height="100px">
+    {% else %}
+        <p>Sem imagem.</p>
+    {% endif %}
+    <form action="{% url 'responder_denuncia' denuncia.id %}" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Responder</button>
+    </form>
+</body>
+</html>

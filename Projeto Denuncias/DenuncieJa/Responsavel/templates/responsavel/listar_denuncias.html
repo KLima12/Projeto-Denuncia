@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respostas</title>
+</head>
+<body>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li style="color: green;">{{message}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h1>Olá {{user.username}}</h1>
+    <h1>Listando denuncias:</h1>
+    {% if denuncias %}
+    <ul>
+        {% for denuncia in denuncias %}
+        <li>
+            <a href="{% url 'responder_denuncia' denuncia.id %}">{{denuncia.titulo}}</a>
+            
+        </li>
+    </ul>
+        {% endfor %}
+    {% else %}
+        <p>Não há denúncias pendentes.</p>
+    {% endif %}
+</body>
+</html>
