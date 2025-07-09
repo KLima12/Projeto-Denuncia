@@ -37,6 +37,7 @@ def login(request):
 
 
 def logout(request):
+    # Faz o logout do úsuario
     auth_logout(request)
     return redirect('login')
 
@@ -52,7 +53,7 @@ def responder_denuncia(request, id):
     denuncia = get_object_or_404(Denuncia, id=id)
 
     if request.method == "POST":
-        form = RespostaForm(request.POST, instance=denuncia)
+        form = RespostaForm(request.POST, instance=denuncia) # Nesse instance, o formulario vai ser carregado com a instancia atual do banco de dados.
         if form.is_valid():
             form.save()
             # Aqui, vou enviar essa mensagem após eu responder uma denuncia

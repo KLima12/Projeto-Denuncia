@@ -1,9 +1,0 @@
-body { 
-    background-color: white;
-}
-
-div.form-group { 
-    display: flex;
-    padding: 15px;
-    justify-content: flex-start;
-}

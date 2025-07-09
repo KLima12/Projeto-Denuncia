@@ -23,21 +23,21 @@ class Denuncia(models.Model):
         ('saude_publica', 'Saúde Pública'),
         ('outros', 'Outros'),
     ]
-    nome = models.CharField(max_length=30, default="Anônimo")
+    nome = models.CharField(max_length=30, blank=True, null=True) # Campo pode ser branco. # Pode ser armazenado como nulo no BD.
     protocolo = models.UUIDField(
         default=uuid.uuid4, editable=False, unique=True)
     titulo = models.CharField(max_length=200)
     descricao = models.TextField()
     categoria = models.CharField(max_length=50, choices=CATEGORIAS)
-    
-    endereco = models.CharField(max_length=300) # Obrigatório
-    cidade = models.CharField("Cidade", max_length=100)
-    bairro = models.CharField("Bairro", max_length=100)
-    numero = models.CharField("Número", max_length=20)
-    cep = models.CharField("CEP", max_length=9, null=True) # Não obrigatório
-    
-    numero = models.CharField
-    
+    ponto_de_referencia = models.CharField("Ponto de Referência",max_length=50,
+     blank=True, null=True, help_text="Caso não tenha o endereço completo, descreva o local aqui.")
+    endereco = models.CharField(max_length=300, blank=True, null=True) # Obrigatório
+    cidade = models.CharField("Cidade", max_length=100, blank=True, null=True)
+    bairro = models.CharField("Bairro", max_length=100, blank=True, null=True)
+    numero = models.CharField("Número", max_length=20, blank=True, null=True)
+    cep = models.CharField("CEP", max_length=9, null=True, blank=True) # Não obrigatório
+    estado = models.CharField("Estado (UF)", max_length=2, blank=True, null=True)
+        
     # Usando blank para dizer que não é obrigatório enviar uma imagem
     imagem = models.ImageField(upload_to='imagens/', blank=True)
     # Data e horário atualizada automaticamente
